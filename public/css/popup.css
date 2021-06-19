@@ -1,0 +1,69 @@
+/* @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css); */
+.wrap{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+    background: (0,0,0,0.7);
+    position: absolute;
+    top:0;
+    width: 100%;
+    height: 100%;
+    border: 1px solid red;
+}
+.detailBox {
+    width:350px;
+    height:400px;
+    border:1px solid #bbb;
+    margin:50px;
+  }
+.titleBox {
+    background-color:#fdfdfd;
+    padding:10px;
+}
+.titleBox label{
+  color:#444;
+  margin:0;
+  display:inline-block;
+}
+.commentBox {
+    padding:10px;
+    border-top:1px dotted #bbb;
+}
+/* */
+.commentList {
+    padding:0;
+    list-style:none;
+    max-height:500px;
+    height: 230px;
+    overflow:auto;
+}
+.commentList li {
+    margin:0;
+    margin-top:10px;
+}
+.commentList li > div {
+    display:table-cell;
+}
+.commenterImage {
+    width:30px;
+    margin-right:10px;
+    height:100%;
+    float:left;
+}
+.commenterImage img {
+    width:100%;
+    border-radius:50%;
+}
+.commentText p {
+    margin:0;
+}
+.sub-text {
+    color:#aaa;
+    font-family:verdana;
+    font-size:11px;
+}
+.actionBox {
+    border-top:1px dotted #bbb;
+    padding:5px 10px;
+    height:70%
+}

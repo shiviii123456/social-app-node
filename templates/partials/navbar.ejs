@@ -1,0 +1,20 @@
+<nav class="navbar navbar-light bg-white">
+    <a href="#" class="navbar-brand">GetSocial</a>
+    <div class="edit">
+        <button class="btn btn-primary" onclick="openLoginForm()"> <i class="fa fa-pencil-square-o"
+                aria-hidden="true">edit-profile</i></button>
+    </div>
+    <a href="/profilePage"><i class="fa fa-user" aria-hidden="true">about</i></a>
+    <a href="/searchPage"> <i class="fa fa-search">Find Frnds</i></a>
+    <a href="/logout">logout</a>
+    <form class="form-inline" method="post" action="/frndProf">
+        <div class="input-group">
+            <input type="text" class="form-control" id="button-addon2" name="info" spellcheck="false">
+            <div class="input-group-append">
+                <button class="btn btn-outline-primary" type="submit" id="button-addon2">
+                    <i class="fa fa-search"></i>
+                </button>
+            </div>
+        </div>
+    </form>
+</nav>

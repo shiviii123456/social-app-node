@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/editProfile.css">
+</head>
+
+<body>
+    <form method="POST" action="/updateInfo" enctype="multipart/form-data">
+        <div class="post">
+            <div class="form">
+                <div class="wrapper">
+                    <img src="https://profiles.utdallas.edu/img/default.png" alt="image" id="photo">
+                    <input type="file" id="file" name="file">
+                    <label for="file" class="upload"><i class="fas fa-camera" style="font-size: 15px;"></i></label>
+                </div>
+                <div class="inputs">
+                    <input type="text" placeholder="Name" name="name">
+                    <input type="text" placeholder="Bio" name="bio">
+                    <div class="input-2">
+                        <input type="text" placeholder="Age" name="age">
+                        <input type="text" name="mobileNo" placeholder="Mobile No">
+                    </div>
+                    <input type="text" name="profession" placeholder="Profession">
+                    <input type="text" placeholder="Interests" name="interest">
+                    <input type="text" placeholder="hobby" name="hobby">
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="js/editProfile.js"></script>
+</body>
+
+</html>

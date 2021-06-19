@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="css/profile.css">
+    <!-- CSS only -->
+</head>
+
+<body>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <nav class="navbar navbar-light bg-white">
+        <a href="#" class="navbar-brand">GetSocial</a>
+        <div class="edit">
+            <a href="/editProfile"><i class="fa fa-pencil-square-o" aria-hidden="true">edit-profile</i></a>
+        </div>
+        <a href="/about"><i class="fa fa-user" aria-hidden="true">about</i></a>
+        <a href="/searchPage"> <i class="fa fa-search">Find Frnds</i></a>
+        <a href="/logout">logout</a>
+        <form class="form-inline" method="post" action="/frndProf">
+            <div class="input-group">
+                <input type="text" class="form-control" id="button-addon2" name="info" spellcheck="false">
+                <div class="input-group-append">
+                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">
+                        <i class="fa fa-search"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </nav>
+
+    <header>
+        <div class="container">
+            <div class="profile">
+                <div class="profile-image">
+                    <img src="https://images.unsplash.com/photo-1513721032312-6a18a42c8763?w=152&h=152&fit=crop&crop=faces"
+                        alt="">
+                </div>
+                <div class="profile-user-settings">
+
+                    <h1 class="profile-user-name">janedoe_</h1>
+                    <button class="btn profile-settings-btn" aria-label="profile settings"><i class="fas fa-cog"
+                            aria-hidden="true"></i></button>
+                </div>
+                <div class="profile-stats">
+                    <ul>
+                        <li><span class="profile-stat-count">164</span> posts</li>
+                        <li><span class="profile-stat-count">188</span> followers</li>
+                        <li><span class="profile-stat-count">206</span> following</li>
+                    </ul>
+                </div>
+                <div class="profile-bio">
+                    <p><span class="profile-real-name">Jane Doe</span> Lorem ipsum dolor sit, amet consectetur
+                        adipisicing elit 📷✈️🏕️</p>
+                </div>
+            </div>
+            <!-- End of profile section -->
+        </div>
+        <!-- End of container -->
+    </header>
+    <hr>
+    <main>
+
+
+        <div class="container">
+            <div class="gallery">
+                <% for(let i=0;i< post.length; i++){%>
+                    <div class="gallery-item" tabindex="0">
+                        <img src="./Upload/<%= post[i].img %>" class="gallery-image" alt="">
+                        <div class="gallery-item-info">
+                            <ul>
+                                <li class="gallery-item-likes"><span class="visually-hidden">Likes:</span><i
+                                        class="fas fa-heart" aria-hidden="true"></i> 89</li>
+                                <li class="gallery-item-comments"><span class="visually-hidden">Comments:</span><i
+                                        class="fas fa-comment" aria-hidden="true"></i> 5</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <%} %>
+            </div>
+            <!-- End of gallery -->
+
+            <!-- <div class="loader"></div> -->
+        </div>
+
+        <!-- End of container -->
+    </main>
+</body>
+
+</html>
