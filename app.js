@@ -295,6 +295,16 @@ app.post("/comment", async (req, res) => {
             res.json(post.comment)
     })
 })
+app.post("/allComment", (req, res) => {
+    const postId = req.body.postId;
+    posts.findOne({ _id: postId })
+        .populate("comment.postedBy")
+        .then(post => {
+            res.json(post.comment)
+        }).catch(err => {
+            console.log(err)
+        })
+})
 app.get("/logout", (req, res) => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userToken");

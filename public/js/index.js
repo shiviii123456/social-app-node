@@ -1,10 +1,10 @@
 
-function openLoginForm() {
-    document.body.classList.add("showLoginForm");
-}
-function closeLoginForm() {
-    document.body.classList.remove("showLoginForm");
-}
+// function openLoginForm() {
+//     document.body.classList.add("showLoginForm");
+// }
+// function closeLoginForm() {
+//     document.body.classList.remove("showLoginForm");
+// }
 // const wrapper = document.querySelector(".detailBox");
 // const close = document.querySelector(".close");
 // const trigger = document.querySelectorAll(".first");
@@ -50,15 +50,53 @@ const wrap = document.querySelector(".wrap");
 const button = document.querySelector(".btn-primary")
 const postId = document.querySelector("#postId")
 const text = document.querySelector("#text")
+const commentList = document.querySelector(".commentList")
 
 const showBox = (index) => {
-    let x = document.getElementsByClassName("wrap")[index].id;
-    postId.value = x;
-    console.log(x);
+    let postID = document.getElementsByClassName("wrap")[index].id;
+    console.log(postID)
+    postId.value = postID;
     wrap.style.display = "flex";
+
+    fetch("/allComment", {
+        method: "POST",
+        headers: {
+            "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+            postId: postID
+        })
+    }).then(res => res.json()).then(response => {
+        console.log(response);
+        if (response.length != 0) {
+            for (let i = 0; i < 3; i++) {
+                //create li
+                const li = document.createElement("li");
+                li.classList.add("commentLi");
+                //create div
+                const div1 = document.createElement("div")
+                div1.classList.add("commenterImage")
+                var img = document.createElement('img');
+                if (response[i].postedBy.image != "")
+                    img.src = `/upload/${response[i].postedBy.image}`;
+                else
+                    img.src = "https://profiles.utdallas.edu/img/default.png";
+                div1.appendChild(img)
+                const div2 = document.createElement("div");
+                div2.classList.add("commentText")
+                const p = document.createElement("p")
+                p.innerText = response[i].text;
+                div2.appendChild(p)
+                li.appendChild(div1)
+                li.appendChild(div2)
+                commentList.appendChild(li)
+            }
+        }
+    })
 }
 const removeBox = () => {
     wrap.style.display = "none";
+    document.location.reload()
 }
 const comment = () => {
     fetch("/comment", {
@@ -109,11 +147,5 @@ const getUnLikes = (_id) => {
             document.location.reload();
         })
 }
-const getComment = () => {
-    fetch("/comment")
-        .then(res => res.json()).then(result => {
-            console.log("hello")
-        }).catch(err => {
-            console.log(err)
-        })
-}
+
+

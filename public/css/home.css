@@ -143,9 +143,9 @@ body {
     height: 185px;
     overflow:auto;
 }
-.commentList li {
-    margin:0;
-    margin-top:10px;
+.commentList .commentLi {
+    margin-bottom:20px;
+    font-size: 1.3rem;
 }
 .commentList li > div {
     display:table-cell;
@@ -157,7 +157,8 @@ body {
     float:left;
 }
 .commenterImage img {
-    width:100%;
+    height: 45px;
+    width: 45px;
     border-radius:50%;
 }
 .commentText p {

@@ -10,12 +10,9 @@ const postModel = Schema({
     comment: [
         {
             text: String,
-            comment: {
-                text: String,
-                postedBy: {
-                    type: ObjectId,
-                    ref: "userdata"
-                }
+            postedBy: {
+                type: ObjectId,
+                ref: "userdata"
             }
         }
     ],
