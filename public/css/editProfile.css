@@ -26,12 +26,13 @@
     left:40%;
     border-radius: 50%;
     overflow:hidden;
+    border: 1px solid black;
     /* watch the meaning of overflow */
 }
 #photo{
    /* height: 100%;
    width:100%; */
-   background-position: center;
+   background-position: center center;
    background-size:cover;
 }
 #file{
@@ -54,21 +55,25 @@
 .inputs{
     display: flex;
     flex-direction: column;
-    width: 100%;
+    width: 100% !important;
     position: absolute;
     top:32%;
 }
-input{
+.input-1{
+    color: black;
+    width: 230px !important;
     margin: 0.7rem 5rem;
-    font-size: 1rem;
+    font-size: 0.8rem;
     padding:0.5rem;
     font-family: "proxima-nova-alt",Helvetica,Arial,sans-serif;
     text-transform: uppercase;
     /* border:none;input me aaye box ko remove kr dega */
-    border: none;
+    border: none !important;
     /* input pr click krne ke baad aa rhe box ko remove kr dega */
-    outline: none;
-    border-bottom: 1px solid #828484;
+    outline: none !important;
+    border-bottom: 2px solid #828484 !important;
+    background-color: #fff ;
+    border-radius: 0;
 }
 .input-2{
     display: flex;

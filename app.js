@@ -219,15 +219,23 @@ app.get("/deletePost/:id", (req, res) => {
     })
 })
 app.get("/editProfile", requireLogin, (req, res) => {
-    res.render("editProfile")
+    const loginUser = localStorage.getItem("userName");
+    data.findOne({ username: loginUser }).then(user => {
+        res.render("editProfile", {
+            user: user
+        })
+    }).catch(err => {
+        console.log(err);
+    })
 })
 app.get("/about", requireLogin, (req, res) => {
     const loginUser = localStorage.getItem("userName");
     data.findOne({ username: loginUser }).then(
         user => {
             posts.find({ postedBy: user._id }).then(post => {
-                res.render("profile", {
-                    post
+                res.render("myprofile", {
+                    post: post,
+                    user: user
                 });
                 console.log(post)
             }).catch(err => {
@@ -309,6 +317,9 @@ app.get("/logout", (req, res) => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userToken");
     res.redirect("login");
+})
+app.get("/frndProf", requireLogin, (req, res) => {
+    res.render("frndprofile")
 })
 app.listen(port, () => {
     console.log("stating at", port)

@@ -7,6 +7,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <link rel="stylesheet" href="css/home.css">
 </head>
 
@@ -15,25 +17,19 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <nav class="navbar navbar-light bg-white">
-        <a href="#" class="navbar-brand">GetSocial</a>
-        <div class="edit">
-            <a href="/editProfile"><i class="fa fa-pencil-square-o" aria-hidden="true">edit-profile</i></a>
-        </div>
-        <a href="/about"><i class="fa fa-user" aria-hidden="true">about</i></a>
-        <a href="/searchPage"> <i class="fa fa-search">Find Frnds</i></a>
-        <a href="/logout">logout</a>
-        <form class="form-inline" method="post" action="/frndProf">
-            <div class="input-group">
-                <input type="text" class="form-control" id="button-addon2" name="info" spellcheck="false">
-                <div class="input-group-append">
-                    <button class="btn btn-outline-primary" type="submit" id="button-addon2">
-                        <i class="fa fa-search"></i>
-                    </button>
-                </div>
+        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png"
+            id="logo">
+        <input type="text" placeholder="search" />
+        <div class="navigation">
+            <a href="/home"><i class='fas fa-home'></i></a>
+            <a href="/editProfile"><i class="fa fa-pencil-square-o"></i></a>
+            <a href="/about"> <i class='far fa-heart'></i></a>
+            <a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <div id="user">
+                <img src="./Upload/<%= image %>" style="border: 1px solid #545454;">
             </div>
-        </form>
+        </div>
     </nav>
-    <div id="match-list"></div>
     <div class="container-fluid gedf-wrapper">
         <div class="row">
             <div class="col-md-3">
@@ -183,7 +179,7 @@
                                 <span class="like">
                                     <%= j %>
                                 </span>
-                                <a class="card-link"><i class="fa fa-gittip"
+                                <a class="card-link"><i class="fa fa-thumbs-up"
                                         onclick="getLikes('<%= post[i]._id %>')"></i>
                                     Like</a>
                                 <a class="card-link"><i class="fa fa-thumbs-down"
@@ -208,7 +204,6 @@
                         </div>
                         <div class="actionBox">
                             <ul class="commentList">
-
                             </ul>
                             <form class="form-inline" role="form" enctype="multipart/form-data">
                                 <input type="hidden" id="postId" name="postIds">
@@ -250,7 +245,6 @@
                 </div>
             </div>
         </div>
-    </div>
     </div>
     <script src="js/index.js"></script>
 </body>
