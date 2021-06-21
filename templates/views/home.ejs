@@ -135,103 +135,107 @@
             </div>
 
             <!--- \\\\\\\Post-->
-            <% for(let i=0;i< post.length;i++){%>
-                <div class="card gedf-card">
-                    <div class="card-header">
-                        <div class="d-flex justify-content-between align-items-center">
+            <% if(post){%>
+                <% for(let i=0;i< post.length;i++){%>
+                    <div class="card gedf-card">
+                        <div class="card-header">
                             <div class="d-flex justify-content-between align-items-center">
-                                <div class="mr-2">
-                                    <% if (post[i].postedBy.image !="" ) { %>
-                                        <img class="rounded-circle" width="45" height="45"
-                                            src="./Upload/<%= post[i].postedBy.image %>" alt="">
-                                        <%} else { %>
-                                            <img class="rounded-circle" width="45" style="border:1px solid #0d6efd"
-                                                src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
-                                                alt="">
-                                            <% } %>
-                                </div>
-                                <div class="ml-2">
-                                    <div class="h5 m-0">
-                                        <%= post[i].postedBy.username %>
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <% if (image !="" ) { %>
+                                            <img class="rounded-circle" width="45" height="45"
+                                                src="./Upload/<%= post[i].postedBy.image %>" alt="">
+                                            <%} else { %>
+                                                <img class="rounded-circle" width="45" style="border:1px solid #0d6efd"
+                                                    src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                                    alt="">
+                                                <% } %>
                                     </div>
-                                    <div class="h7 text-muted">
-                                        <%= post[i].postedBy.name %>
+                                    <div class="ml-2">
+                                        <div class="h5 m-0">
+                                            <%= post[i].postedBy.username %>
+                                        </div>
+                                        <div class="h7 text-muted">
+                                            <%= post[i].postedBy.name %>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div>
-                                <div class="dropdown">
-                                    <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
-                                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                        <i class="fa fa-ellipsis-h"></i>
-                                    </button>
-                                    <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
-                                        <% if(JSON.stringify(username)==JSON.stringify(post[i].postedBy.username)){%>
-                                            <a class="dropdown-item" href="/editPost/<%= post[i]._id %>">Edit</a>
-                                            <a class="dropdown-item" href="/deletePost/<%= post[i]._id %>">Delete</a>
-                                            <%} %>
-                                                <a class="dropdown-item" href="#">Report</a>
+                                <div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                            <%
+                                                if(JSON.stringify(username)==JSON.stringify(post[i].postedBy.username)){%>
+                                                <a class="dropdown-item" href="/editPost/<%= post[i]._id %>">Edit</a>
+                                                <a class="dropdown-item"
+                                                    href="/deletePost/<%= post[i]._id %>">Delete</a>
+                                                <%} %>
+                                                    <a class="dropdown-item" href="#">Report</a>
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-                        <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div>
-                        <p class="card-text">
-                            <%= post[i].caption %>
-                        </p>
-                        <img class="rounded rounded mx-auto d-block" src="./Upload/<%= post[i].img %>" alt="">
-                    </div>
-                    <div class="card-footer">
-
-                        <% for(j=0; j< post[i].like.length ;j++){%>
-
-                            <%} %>
-                                <span class="like">
-                                    <%= j %>
-                                </span>
-                                <a class="card-link"><i class="fa fa-thumbs-up"
-                                        onclick="getLikes('<%= post[i]._id %>')"></i>
-                                    Like</a>
-                                <a class="card-link"><i class="fa fa-thumbs-down"
-                                        onclick="getUnLikes('<%= post[i]._id %>')"></i>
-                                    Unlike</a>
-                                <a class="card-link"><i class="fa fa-comment" onclick="showBox('<%= i %>')"></i>
-                                    Comment</a>
-                                <a class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
-                    </div>
-                </div>
-                <div class="wrap" id="<%= post[i]._id %>">
-                    <div class="detailBox">
-                        <div class="titleBox">
-                            <label>Comment</label>
-                            <button class="close" onclick="removeBox()">&times;</button>
-                        </div>
-                        <div class="commentBox">
-                            <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and
-                                typesetting
-                                industry.
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div>
+                            <p class="card-text">
+                                <%= post[i].caption %>
                             </p>
+                            <img class="rounded rounded mx-auto d-block" src="./Upload/<%= post[i].img %>" alt="">
                         </div>
-                        <div class="actionBox">
-                            <ul class="commentList">
-                            </ul>
-                            <form class="form-inline" role="form" enctype="multipart/form-data">
-                                <input type="hidden" id="postId" name="postIds">
-                                <div class="form-group">
-                                    <input class="form-control" type="text" placeholder="Your comments" name="text"
-                                        id="text">
-                                </div>
-                                <div class=" form-group">
-                                    <button class="btn btn-primary" type="submit" onclick="comment()">Add</button>
-                                </div>
-                            </form>
+                        <div class="card-footer">
+
+                            <% for(j=0; j< post[i].like.length ;j++){%>
+
+                                <%} %>
+                                    <span class="like">
+                                        <%= j %>
+                                    </span>
+                                    <a class="card-link"><i class="fa fa-thumbs-up"
+                                            onclick="getLikes('<%= post[i]._id %>')"></i>
+                                        Like</a>
+                                    <a class="card-link"><i class="fa fa-thumbs-down"
+                                            onclick="getUnLikes('<%= post[i]._id %>')"></i>
+                                        Unlike</a>
+                                    <a class="card-link"><i class="fa fa-comment" onclick="showBox('<%= i %>')"></i>
+                                        Comment</a>
+                                    <a class="card-link"><i class="fa fa-mail-forward"></i> Share</a>
                         </div>
                     </div>
-                </div>
-                <%} %>
-                    <!-- Post /////-->
+                    <div class="wrap" id="<%= post[i]._id %>">
+                        <div class="detailBox">
+                            <div class="titleBox">
+                                <label>Comment</label>
+                                <button class="close" onclick="removeBox()">&times;</button>
+                            </div>
+                            <div class="commentBox">
+                                <p class="taskDescription">Lorem Ipsum is simply dummy text of the printing and
+                                    typesetting
+                                    industry.
+                                </p>
+                            </div>
+                            <div class="actionBox">
+                                <ul class="commentList">
+                                </ul>
+                                <form class="form-inline" role="form" enctype="multipart/form-data">
+                                    <input type="hidden" id="postId" name="postIds">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Your comments" name="text"
+                                            id="text">
+                                    </div>
+                                    <div class=" form-group">
+                                        <button class="btn btn-primary" type="submit" onclick="comment()">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <%} %>
+                        <%} %>
+                            <!-- Post /////-->
         </div>
         <div class="col-md-3">
             <div class="card gedf-card">

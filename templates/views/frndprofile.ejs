@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style>
@@ -37,10 +38,28 @@
                 alt="instagram">
 
             <!-- search-->
+            <div class="relative hidden sm:block text-gray-500">
+                <input class="search-bar max-w-xs border rounded bg-gray-200 px-4
+              text-center outline-none focus:border-gray-400" type="search" placeholder="Search">
+                <i class="fa fa-search absolute top-0 left-0 ml-12 mt-1"></i>
+            </div>
+
             <div class="space-x-4">
-                <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold 
-                             text-sm rounded" href="#">Log In</a>
-                <a class="inline-block text-blue-500 font-semibold text-sm" href="#">Sign Up</a>
+                <a class="inline-block text-xl text-gray-600 px-2 py-1  font-semibold 
+                             text-sm rounded" href="/home"><i class='fas fa-home'></i></a>
+                <a class="inline-block  text-xl text-gray-600 font-semibold text-sm" href="/editProfile"><i
+                        class="fa fa-pencil-square-o"></i></a>
+                <a class="inline-block  text-xl text-gray-600 font-semibold text-sm" href="/about"><i
+                        class='far fa-heart'></i></a>
+                <a class="inline-block  text-xl text-gray-600 text-sm px-2 py-1  font-semibold 
+                        text-sm rounded" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                <% if(loginuser.image !="" ){%>
+                    <img class="inline-block w-6 h-6 object-cover rounded-full border-gray-600"
+                        src="./Upload/<%= user.image %>">
+                    <%} else{%>
+                        <img class="inline-block w-6 h-6 object-cover rounded-full border-gray-600"
+                            src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg">
+                        <%} %>
             </div>
         </div>
     </nav>
@@ -50,15 +69,20 @@
         <div class="lg:w-8/12 lg:mx-auto mb-8">
 
             <header class="flex flex-wrap items-center p-4 md:py-8">
-
                 <div class="md:w-3/12 md:ml-16">
                     <!-- profile image -->
-                    <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
-                       border-2 border-pink-600 p-1" src="./upload/<%= user.image %>" alt="profile">
+                    <% if(user.image !="" ){%>
+                        <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
+                        border-2 border-pink-600 p-1" src="./upload/<%= user.image %>" alt="profile">
+                        <%} else{%>
+                            <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
+                            border-2 border-pink-600 p-1"
+                                src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                alt="profile">
+                            <%} %>
                 </div>
-
                 <!-- profile meta -->
-                <div class="w-8/12 md:w-7/12 ml-4">
+                <div class="w-8/12 md:w-7/12 ml-4" id="item-1">
                     <div class="md:flex md:flex-wrap md:items-center mb-4">
                         <h2 class="text-3xl inline-block font-light md:mr-2 mb-2 sm:mb-0">
                             <%= user.username %>
@@ -72,12 +96,21 @@
                         </span>
 
                         <!-- follow button -->
-                        <a class="bg-blue-500 px-2 py-1 
-                          text-white font-semibold text-sm rounded block text-center 
-                          sm:inline-block block" id="btn" onclick="follow('<%= user._id %>')">Follow</a>
+                        <% var isFollowing=false; loginuser.following.forEach(function(follower) { if(user &&
+                            follower._id.equals(user._id)) { isFollowing=true; return false; } }); if( isFollowing ) {
+                            %>
+                            <a class="bg-blue-500 px-2 py-1 
+                                text-white font-semibold text-sm rounded block text-center 
+                                sm:inline-block block cursor-pointer" id="btn"
+                                onclick="unfollow('<%= user._id %>')">UnFollow</a>
+                            <% } else { %>
+                                <a class="bg-blue-500 px-2 py-1 
+                                text-white font-semibold text-sm rounded block text-center 
+                                sm:inline-block block cursor-pointer" id="btn"
+                                    onclick="follow('<%= user._id %>')">Follow</a>
+                                <% } %>
+                                    <!-- post, following, followers list for medium screens -->
                     </div>
-
-                    <!-- post, following, followers list for medium screens -->
                     <ul class="hidden md:flex space-x-8 mb-4">
                         <li>
                             <span class="font-semibold">

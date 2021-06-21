@@ -314,6 +314,7 @@ app.post("/allComment", (req, res) => {
         })
 })
 app.post("/frndProf", requireLogin, (req, res) => {
+    const loginUser = localStorage.getItem("userName");
     data.findOne({ username: req.body.users }).then(user => {
         if (!user) {
             res.redirect("/editProfile")
@@ -321,9 +322,15 @@ app.post("/frndProf", requireLogin, (req, res) => {
         else {
             posts.find({ postedBy: user._id })
                 .then(post => {
-                    res.render("frndprofile", {
-                        user: user,
-                        post: post
+                    data.findOne({ username: loginUser }).then(loginuser => {
+                        res.render("frndprofile", {
+                            user: user,
+                            post: post,
+                            loginuser: loginuser
+                        })
+                    }
+                    ).catch(err => {
+                        console.log(err)
                     })
                 }).catch(err => {
                     console.log(err)
@@ -362,7 +369,7 @@ app.post("/following", (req, res) => {
         console.log(err)
     })
 })
-app.post("/following", (req, res) => {
+app.post("/unfollow", (req, res) => {
     const loginUser = localStorage.getItem("userName");
     const id = req.body._id;
     console.log(id);
