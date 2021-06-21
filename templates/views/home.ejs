@@ -19,14 +19,21 @@
     <nav class="navbar navbar-light bg-white">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png"
             id="logo">
-        <input type="text" placeholder="search" />
+        <form method="POST" action="/frndprof">
+            <input type=" text" placeholder="search" name="users" />
+        </form>
         <div class="navigation">
             <a href="/home"><i class='fas fa-home'></i></a>
             <a href="/editProfile"><i class="fa fa-pencil-square-o"></i></a>
             <a href="/about"> <i class='far fa-heart'></i></a>
             <a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i></a>
             <div id="user">
-                <img src="./Upload/<%= image %>" style="border: 1px solid #545454;">
+                <% if(image !="" ){%>
+                    <img src="./Upload/<%= image %>" style="border: 1px solid #545454;">
+                    <%} else{%>
+                        <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                            style="border: 1px solid #545454;">
+                        <%} %>
             </div>
         </div>
     </nav>
@@ -35,10 +42,15 @@
             <div class="col-md-3">
                 <div class="card">
                     <div class="card-body" id="top-card">
-                        <img src="./Upload/<%= image %>">
-                        <div class="h7 text-muted" id="name">
-                            <%= name %>
-                        </div>
+                        <% if(image !="" ){%>
+                            <img src="./Upload/<%= image %>">
+                            <%} else{%>
+                                <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                    style="border: 1px solid #545454;">
+                                <%} %>
+                                    <div class="h7 text-muted" id="name">
+                                        <%= name %>
+                                    </div>
                     </div>
                     <ul class="list-group list-group-flush">
                         <li class="list-group-item">

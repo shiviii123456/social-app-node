@@ -7,6 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
         integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
     <style>
@@ -44,9 +45,28 @@
             </div>
 
             <div class="space-x-4">
-                <a class="inline-block bg-blue-500 px-2 py-1 text-white font-semibold 
-                             text-sm rounded" href="#">Log In</a>
-                <a class="inline-block text-blue-500 font-semibold text-sm" href="#">Sign Up</a>
+                <!-- <a href="/home"><i class='fas fa-home'></i></a>
+            <a href="/editProfile"><i class="fa fa-pencil-square-o"></i></a>
+            <a href="/about"> <i class='far fa-heart'></i></a>
+            <a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <div id="user">
+                <img src="./Upload/<%= user.image %>" style="border: 1px solid #545454;">
+            </div> -->
+                <a class="inline-block text-xl text-gray-600 px-2 py-1  font-semibold 
+                             text-sm rounded" href="/home"><i class='fas fa-home'></i></a>
+                <a class="inline-block  text-xl text-gray-600 font-semibold text-sm" href="/editProfile"><i
+                        class="fa fa-pencil-square-o"></i></a>
+                <a class="inline-block  text-xl text-gray-600 font-semibold text-sm" href="/about"><i
+                        class='far fa-heart'></i></a>
+                <a class="inline-block  text-xl text-gray-600 text-sm px-2 py-1  font-semibold 
+                        text-sm rounded" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
+                <% if(image !="" ){%>
+                    <img class="inline-block w-6 h-6 object-cover rounded-full border-gray-600"
+                        src="./Upload/<%= user.image %>">
+                    <%} else{%>
+                        <img class="inline-block w-6 h-6 object-cover rounded-full border-gray-600"
+                            src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg">
+                        <%} %>
             </div>
         </div>
     </nav>
@@ -59,10 +79,15 @@
 
                 <div class="md:w-3/12 md:ml-16">
                     <!-- profile image -->
-                    <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
-                       border-2 border-pink-600 p-1"
-                        src="https://images.unsplash.com/photo-1502791451862-7bd8c1df43a7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=700&q=80"
-                        alt="profile">
+                    <% if(user.image !="" ){%>
+                        <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
+                       border-2 border-pink-600 p-1" src="./Upload/<%= user.image %>" alt="profile">
+                        <%} else{%>
+                            <img class="w-20 h-20 md:w-40 md:h-40 object-cover rounded-full
+                        border-2 border-pink-600 p-1"
+                                src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                alt="profile">
+                            <%} %>
                 </div>
 
                 <!-- profile meta -->
@@ -84,20 +109,25 @@
                     <!-- post, following, followers list for medium screens -->
                     <ul class="hidden md:flex space-x-8 mb-4">
                         <li>
-                            <span class="font-semibold">136</span>
+                            <span class="font-semibold">
+                                <%= post.length %>
+                            </span>
                             posts
                         </li>
 
                         <li>
-                            <span class="font-semibold">40.5k</span>
+                            <span class="font-semibold">
+                                <%= user.followers.length %>
+                            </span>
                             followers
                         </li>
                         <li>
-                            <span class="font-semibold">302</span>
+                            <span class="font-semibold">
+                                <%= user.following.length %>
+                            </span>
                             following
                         </li>
                     </ul>
-
                     <!-- user meta form medium screens -->
                     <div class="hidden md:block">
                         <h1 class="font-semibold">
@@ -131,16 +161,22 @@
                 <ul class="flex md:hidden justify-around space-x-8 border-t 
                   text-center p-2 text-gray-600 leading-snug text-sm">
                     <li>
-                        <span class="font-semibold text-gray-800 block">136</span>
+                        <span class="font-semibold text-gray-800 block">
+                            <%= post.length %>
+                        </span>
                         posts
                     </li>
 
                     <li>
-                        <span class="font-semibold text-gray-800 block">40.5k</span>
+                        <span class="font-semibold text-gray-800 block">
+                            <%= user.followers.length %>
+                        </span>
                         followers
                     </li>
                     <li>
-                        <span class="font-semibold text-gray-800 block">302</span>
+                        <span class="font-semibold text-gray-800 block">
+                            <%= user.following.length %>
+                        </span>
                         following
                     </li>
                 </ul>
@@ -191,12 +227,12 @@
                                       space-x-4 h-full">
                                             <span class="p-2">
                                                 <i class="fas fa-heart"></i>
-                                                412K
+                                                <%= post[i].like.length %>
                                             </span>
 
                                             <span class="p-2">
                                                 <i class="fas fa-comment"></i>
-                                                2,909
+                                                <%= post[i].comment.length %>
                                             </span>
                                         </div>
                                     </div>

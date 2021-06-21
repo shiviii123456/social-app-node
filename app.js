@@ -12,7 +12,7 @@ const session = require("express-session");
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const posts = require("./public/model/postSchema");
-const { Router } = require("express");
+const { Router, response } = require("express");
 const { findOne } = require("./public/model/postSchema");
 const { JWT_SECRET } = require("./key/key");
 
@@ -313,13 +313,88 @@ app.post("/allComment", (req, res) => {
             console.log(err)
         })
 })
+app.post("/frndProf", requireLogin, (req, res) => {
+    data.findOne({ username: req.body.users }).then(user => {
+        if (!user) {
+            res.redirect("/editProfile")
+        }
+        else {
+            posts.find({ postedBy: user._id })
+                .then(post => {
+                    res.render("frndprofile", {
+                        user: user,
+                        post: post
+                    })
+                }).catch(err => {
+                    console.log(err)
+                })
+        }
+    }).catch(err => {
+        console.log(err)
+    })
+})
+app.post("/following", (req, res) => {
+    const loginUser = localStorage.getItem("userName");
+    const id = req.body._id;
+    console.log(id);
+    data.findOne({ username: loginUser }).then(user => {
+        data.findByIdAndUpdate(user._id, {
+            $push: { following: id }
+        }, {
+            new: true
+        }).exec((err, success) => {
+            if (err)
+                console.log(err)
+            else {
+                data.findByIdAndUpdate(id, {
+                    $push: { followers: user._id }
+                }, {
+                    new: true
+                }).exec((error, following) => {
+                    if (err)
+                        console.log(err)
+                    else
+                        res.json(following)
+                })
+            }
+        })
+    }).catch(err => {
+        console.log(err)
+    })
+})
+app.post("/following", (req, res) => {
+    const loginUser = localStorage.getItem("userName");
+    const id = req.body._id;
+    console.log(id);
+    data.findOne({ username: loginUser }).then(user => {
+        data.findByIdAndUpdate(user._id, {
+            $pull: { following: id }
+        }, {
+            new: true
+        }).exec((err, success) => {
+            if (err)
+                console.log(err)
+            else {
+                data.findByIdAndUpdate(id, {
+                    $pull: { followers: user._id }
+                }, {
+                    new: true
+                }).exec((error, following) => {
+                    if (err)
+                        console.log(err)
+                    else
+                        res.json(following)
+                })
+            }
+        })
+    }).catch(err => {
+        console.log(err)
+    })
+})
 app.get("/logout", (req, res) => {
     localStorage.removeItem("userName");
     localStorage.removeItem("userToken");
     res.redirect("login");
-})
-app.get("/frndProf", requireLogin, (req, res) => {
-    res.render("frndprofile")
 })
 app.listen(port, () => {
     console.log("stating at", port)

@@ -1,5 +1,6 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
+const { ObjectId } = mongoose.Schema.Types;
 const schema = Schema({
     name: {
         required: true,
@@ -47,8 +48,12 @@ const schema = Schema({
         type: String,
         default: "",
     },
-    followers: [],
-    following: []
+    followers: [{
+        type: ObjectId
+    }],
+    following: [{
+        type: ObjectId
+    }]
 });
 const Data = mongoose.model("userdata", schema);
 module.exports = Data;
