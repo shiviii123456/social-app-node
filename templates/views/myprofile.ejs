@@ -53,7 +53,7 @@
                         class='far fa-heart'></i></a>
                 <a class="inline-block  text-xl text-gray-600 text-sm px-2 py-1  font-semibold 
                         text-sm rounded" href="/logout"><i class="fa fa-sign-out" aria-hidden="true"></i></a>
-                <% if(image !="" ){%>
+                <% if(user.image !="" ){%>
                     <img class="inline-block w-6 h-6 object-cover rounded-full border-gray-600"
                         src="./Upload/<%= user.image %>">
                     <%} else{%>

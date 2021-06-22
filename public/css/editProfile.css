@@ -30,16 +30,15 @@
     /* watch the meaning of overflow */
 }
 #photo{
-   /* height: 100%;
-   width:100%; */
-   background-position: center center;
-   background-size:cover;
+   height: 100%;
+   width:100%;
+   object-fit: cover;
 }
 #file{
     display: none;
 }
 .upload{
-    height:40px;
+    height:50px;
     width:100%;
     position:absolute;
     bottom:0;
@@ -88,7 +87,7 @@ button{
     letter-spacing: 0.3rem;
     text-transform: uppercase;
     background-color: #0D6EFD;
-    color: white;
+    color: white !important;
     cursor: pointer;
 }
 @media(max-width:1080px){

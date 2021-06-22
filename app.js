@@ -317,7 +317,7 @@ app.post("/frndProf", requireLogin, (req, res) => {
     const loginUser = localStorage.getItem("userName");
     data.findOne({ username: req.body.users }).then(user => {
         if (!user) {
-            res.redirect("/editProfile")
+            res.status(400).send("user does not exist");
         }
         else {
             posts.find({ postedBy: user._id })
@@ -397,6 +397,29 @@ app.post("/unfollow", (req, res) => {
     }).catch(err => {
         console.log(err)
     })
+})
+app.get("/autocomplete", (req, res) => {
+    let regex = new RegExp(req.query["term"], "i");
+    console.log(regex);
+    data.find({ username: regex }, { "username": 1 }).sort({ "updated_at": -1 })
+        .sort({ "created_at": -1 }).limit(20).then(user => {
+            console.log(user)
+            var result = [];
+            if (user && user.length && user.length > 0) {
+                user.forEach(users => {
+                    let obj = {
+                        id: users._id,
+                        label: users.username
+                    };
+                    result.push(obj)
+                });
+            }
+            res.jsonp(result)
+
+        }).catch(err => {
+            console.log(err);
+        })
+
 })
 app.get("/logout", (req, res) => {
     localStorage.removeItem("userName");

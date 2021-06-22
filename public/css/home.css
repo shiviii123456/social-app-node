@@ -86,19 +86,22 @@ input {
     margin: 2px 10px;
     border-radius: 50%;
 }
-.container-fluid{
-    position: absolute;
-    top:4rem;
-}
+    .container-fluid{
+        position: relative !important;
+        top:4rem;
+    }
 /**Reset Bootstrap*/
 .wrap{
     justify-content: center ;
     align-items: center ;
     background: rgba(0,0,0,0.7) ;
-    width: 100vh ;
-    height: 100vw;
+    width: 100% ;
+    height: 100%;
     position: absolute;
     top:0;
+    left: 0;
+    right: 0;
+    bottom:0;
     display: none;
     z-index: 10;
 }
@@ -147,6 +150,9 @@ input {
 .card-body img{
     height:300px;
     width: 350px;
+    object-fit: cover;
+    background-size:cover;                   
+    background-position: center center; 
 }
 .card-footer span{
     margin: 5px;
@@ -172,7 +178,10 @@ input {
     text-align: center;
 }
 /* @import url(//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css); */
+
 .detailBox {
+    position: fixed;
+    top:60px !important;
     background: gainsboro;
     width:350px;
     height:400px;
@@ -240,4 +249,5 @@ input {
     margin-right:10px;
     outline: none !important;
 }
+
 

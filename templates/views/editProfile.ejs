@@ -6,6 +6,9 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
     <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
@@ -15,14 +18,13 @@
 </head>
 
 <body>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
     <nav class="navbar navbar-light bg-white">
         <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/2/2a/Instagram_logo.svg/840px-Instagram_logo.svg.png"
             id="logo">
         <form method="POST" action="/frndprof">
-            <input type=" text" placeholder="search" name="users" />
+            <input type=" text" id="button-addon2" placeholder="search" name="users" />
         </form>
         <div class="navigation">
             <a href="/home"><i class='fas fa-home'></i></a>
@@ -43,8 +45,8 @@
         <div class="post">
             <div class="form">
                 <div class="wrapper">
-                    <img src="https://icon-library.com/images/edit-profile-icon/edit-profile-icon-25.jpg" alt="image"
-                        id="photo">
+                    <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                        alt="image" id="photo">
                     <input type="file" id="file" name="file">
                     <label for="file" class="upload"><i class="fas fa-camera" style="font-size: 15px;"></i></label>
                 </div>
@@ -63,6 +65,7 @@
             </div>
         </div>
     </form>
+    <script src="js/index.js"></script>
     <script src="js/editProfile.js"></script>
 </body>
 

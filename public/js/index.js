@@ -19,33 +19,33 @@
 //         wrapper.classList.remove("active");
 //     });
 // });
-// $(function () {
-//     $("#button-addon2").autocomplete({
-//         source: function (req, res) {
-//             $.ajax({
-//                 url: "/autocomplete",
-//                 dataType: "jsonp",
-//                 method: "GET",
-//                 data: {
-//                     term: req.term,
-//                 },
-//                 success: function (data) {
-//                     res(data);
-//                 },
-//                 error: function (err) {
-//                     console.log("hi error")
-//                     console.log(err.status);
-//                 }
-//             })
-//         },
-//         minLength: 1,
-//         select: function (event, ui) {
-//             if (ui.item) {
-//                 $("#button-addon2").text(ui.item.label);
-//             }
-//         }
-//     })
-// });
+$(function () {
+    $("#button-addon2").autocomplete({
+        source: function (req, res) {
+            $.ajax({
+                url: "autocomplete/",
+                dataType: "jsonp",
+                method: "GET",
+                data: {
+                    term: req.term,
+                },
+                success: function (data) {
+                    res(data);
+                },
+                error: function (err) {
+                    console.log("hi error")
+                    console.log(err.status);
+                }
+            })
+        },
+        minLength: 1,
+        select: function (event, ui) {
+            if (ui.item) {
+                $("#button-addon2").text(ui.item.label);
+            }
+        }
+    })
+});
 const wrap = document.querySelector(".wrap");
 const button = document.querySelector(".btn-primary")
 const postId = document.querySelector("#postId")
@@ -147,5 +147,33 @@ const getUnLikes = (_id) => {
             document.location.reload();
         })
 }
+// $("#likebtn").on("click", function (event) {
+//     event.preventDefault();
+//     event.stopPropagation();
+//     console.log("hy")
+//     $.ajax({
+//         url: "/like",
+//         type: "POST",
+//         contentType: "application/json",
+//         data: JSON.stringify({
+//             id: $("#postValue").val()
+//         })
+//     }).done(function (result) {
+//         console.log($("#postValue").val())
+//         const i = $("#likeValue").val();
+//         console.log(i)
+//         getLikes(result, i)
+//     }).fail(function (err) {
+//         console.log(err)
+//     })
+// });
 
-
+// const getLikes = (result, i) => {
+//     if (result != "liked") {
+//         console.log(result.length)
+//         const x = document.getElementsByClassName("like")[i].innerText = result.length;
+//     }
+//     else {
+//         alert("post already liked")
+//     }
+// }
