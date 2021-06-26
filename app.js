@@ -168,14 +168,13 @@ app.get("/home", requireLogin, (req, res) => {
     const loginUser = localStorage.getItem("userName");
     data.findOne({ "username": loginUser }).then(user => {
         let array = [];
-        if (user.following) {
+        if (user.following != null) {
             array = user.following;
             array.push(user._id);
         }
         else {
             array.push(user._id)
         }
-        console.log(array)
         posts.find({ postedBy: { $in: array } })
             .populate("postedBy", "_id name username image")
             .sort({ postDate: -1 })
