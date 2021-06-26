@@ -145,24 +145,52 @@ app.post("/login", async (req, res) => {
     }
 });
 app.get("/home", requireLogin, (req, res) => {
+    // const loginUser = localStorage.getItem("userName");
+    // data.findOne({ username: loginUser }).then(user => {
+    //     posts.find({}).
+    //         populate("postedBy", "_id name username image").
+    //         then(post => {
+    //             console.log(user)
+    //             res.render("home", {
+    //                 username: user.username,
+    //                 image: user.image,
+    //                 name: user.name,
+    //                 bio: user.bio,
+    //                 profession: user.profession,
+    //                 post: post
+    //             })
+    //         }).catch(err => {
+    //             console.log(err);
+    //         });
+    // }).catch(err => {
+    //     console.log(err);
+    // })
     const loginUser = localStorage.getItem("userName");
-    data.findOne({ username: loginUser }).then(user => {
-        posts.find({}).
-            populate("postedBy", "_id name username image").
-            then(post => {
-                res.render("home", {
-                    username: user.username,
-                    image: user.image,
-                    name: user.name,
-                    bio: user.bio,
-                    profession: user.profession,
-                    post: post
-                })
-            }).catch(err => {
-                console.log(err);
-            });
-    }).catch(err => {
-        console.log(err);
+    data.findOne({ "username": loginUser }).then(user => {
+        let array = [];
+        if (user.following) {
+            array = user.following;
+            array.push(user._id);
+        }
+        else {
+            array.push(user._id)
+        }
+        console.log(array)
+        posts.find({ postedBy: { $in: array } })
+            .populate("postedBy", "_id name username image")
+            .sort({ postDate: -1 })
+            .then(success => {
+                if (success) {
+                    res.render("home", {
+                        username: user.username,
+                        image: user.image,
+                        name: user.name,
+                        bio: user.bio,
+                        profession: user.profession,
+                        post: success
+                    })
+                }
+            })
     })
 })
 app.post("/updateInfo", upload, (req, res) => {
@@ -400,7 +428,6 @@ app.post("/unfollow", (req, res) => {
 })
 app.get("/autocomplete", (req, res) => {
     let regex = new RegExp(req.query["term"], "i");
-    console.log(regex);
     data.find({ username: regex }, { "username": 1 }).sort({ "updated_at": -1 })
         .sort({ "created_at": -1 }).limit(20).then(user => {
             console.log(user)
