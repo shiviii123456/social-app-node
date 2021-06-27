@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 8000;
@@ -15,7 +16,7 @@ const posts = require("./public/model/postSchema");
 const { Router, response } = require("express");
 const { findOne } = require("./public/model/postSchema");
 const { JWT_SECRET } = require("./key/key");
-require("dotenv").config();
+
 console.log(process.env.JWT_SECRETS);
 app.use(express.static(public));
 
@@ -24,6 +25,8 @@ app.set("views", viewPath);
 app.use(bodyParser({ extended: false }));
 app.use(bodyParser.json());
 app.use(express.json());
+
+console.log(process.env.PORT);
 
 const requireLogin = (req, res, next) => {
     const userToken = localStorage.getItem("userToken");
