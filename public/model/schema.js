@@ -53,7 +53,9 @@ const schema = Schema({
     }],
     following: [{
         type: ObjectId
-    }]
-});
+    }],
+
+},
+);
 const Data = mongoose.model("userdata", schema);
 module.exports = Data;

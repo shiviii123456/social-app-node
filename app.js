@@ -1,7 +1,6 @@
-require("dotenv").config();
 const express = require("express");
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 8000;
 const path = require("path");
 const viewPath = path.join(__dirname, "./templates/views");
 const public = path.join(__dirname, "./public");
@@ -16,10 +15,10 @@ const posts = require("./public/model/postSchema");
 const { Router, response } = require("express");
 const { findOne } = require("./public/model/postSchema");
 const { JWT_SECRET } = require("./key/key");
-
-// console.log(process.env)
-
+require("dotenv").config();
+console.log(process.env.JWT_SECRETS);
 app.use(express.static(public));
+
 app.set("view engine", "ejs");
 app.set("views", viewPath);
 app.use(bodyParser({ extended: false }));
@@ -29,7 +28,7 @@ app.use(express.json());
 const requireLogin = (req, res, next) => {
     const userToken = localStorage.getItem("userToken");
     try {
-        const decode = jwt.verify(userToken, JWT_SECRET);
+        const decode = jwt.verify(userToken, process.env.JWT_SECRETS);
     }
     catch (err) {
         res.redirect("/login");
@@ -350,21 +349,26 @@ app.post("/frndProf", requireLogin, (req, res) => {
             res.status(400).send("user does not exist");
         }
         else {
-            posts.find({ postedBy: user._id })
-                .then(post => {
-                    data.findOne({ username: loginUser }).then(loginuser => {
-                        res.render("frndprofile", {
-                            user: user,
-                            post: post,
-                            loginuser: loginuser
+            if (user.username !== loginUser) {
+                posts.find({ postedBy: user._id })
+                    .then(post => {
+                        data.findOne({ username: loginUser }).then(loginuser => {
+                            res.render("frndprofile", {
+                                user: user,
+                                post: post,
+                                loginuser: loginuser
+                            })
+                        }
+                        ).catch(err => {
+                            console.log(err)
                         })
-                    }
-                    ).catch(err => {
+                    }).catch(err => {
                         console.log(err)
                     })
-                }).catch(err => {
-                    console.log(err)
-                })
+            }
+            else {
+                res.status(400).send("user does not exist");
+            }
         }
     }).catch(err => {
         console.log(err)
@@ -429,6 +433,7 @@ app.post("/unfollow", (req, res) => {
     })
 })
 app.get("/autocomplete", (req, res) => {
+    const loginUser = localStorage.getItem("userName");
     let regex = new RegExp(req.query["term"], "i");
     data.find({ username: regex }, { "username": 1 }).sort({ "updated_at": -1 })
         .sort({ "created_at": -1 }).limit(20).then(user => {
@@ -436,11 +441,13 @@ app.get("/autocomplete", (req, res) => {
             var result = [];
             if (user && user.length && user.length > 0) {
                 user.forEach(users => {
-                    let obj = {
-                        id: users._id,
-                        label: users.username
-                    };
-                    result.push(obj)
+                    if (users.username !== loginUser) {
+                        let obj = {
+                            id: users._id,
+                            label: users.username
+                        };
+                        result.push(obj)
+                    }
                 });
             }
             res.jsonp(result)

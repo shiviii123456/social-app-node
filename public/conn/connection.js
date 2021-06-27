@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb+srv://shivangi:12345@cluster0.kkpza.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
+mongoose.connect("mongodb+srv://shivi:12345@cluster0.ckjb3.mongodb.net/myFirstDatabase?retryWrites=true&w=majority", {
     useCreateIndex: true,
     useUnifiedTopology: true,
     useNewUrlParser: true,
@@ -8,4 +8,5 @@ mongoose.connect("mongodb+srv://shivangi:12345@cluster0.kkpza.mongodb.net/myFirs
     console.log("connection success");
 }).catch((err) => {
     console.log(err);
+    console.log("hello")
 })
