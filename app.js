@@ -1,3 +1,4 @@
+require("dotenv").config();
 const express = require("express");
 const app = express();
 const port = process.env.PORT || 3000;
@@ -15,6 +16,8 @@ const posts = require("./public/model/postSchema");
 const { Router, response } = require("express");
 const { findOne } = require("./public/model/postSchema");
 const { JWT_SECRET } = require("./key/key");
+
+// console.log(process.env)
 
 app.use(express.static(public));
 app.set("view engine", "ejs");
