@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-mongoose.connect("mongodb://localhost:27017/socialPeople", {
+mongoose.connect("mongodb+srv://shivangi:Abc1234@socialmedia.ffd05qd.mongodb.net/?retryWrites=true&w=majority", {
     useCreateIndex: true,
     useUnifiedTopology: true,
     useNewUrlParser: true,
