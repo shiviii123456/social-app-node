@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/home.css">
+    <link rel="stylesheet" href="css/editProfile.css">
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <nav class="navbar navbar-light bg-white">
+        <span style="font-size:1.5rem ; font-family: Arial, Helvetica, sans-serif;">GetSocial</span>
+        <form method="POST" action="/frndprof">
+            <input type=" text" id="button-addon2" placeholder="search" name="users" />
+        </form>
+        <div class="navigation">
+            <a href="/home"><i class='fas fa-home'></i></a>
+            <a href="/editProfile"><i class="fa fa-pencil-square-o"></i></a>
+            <a href="/about"> <i class='far fa-heart'></i></a>
+            <a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <div id="user">
+                <% if(user.image !="" ){%>
+                    <img src="./Upload/<%= user.image %>" style="border: 1px solid #545454;">
+                    <%} else{%>
+                        <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                            style="border: 1px solid #545454;">
+                        <%} %>
+            </div>
+        </div>
+    </nav>
+    <form method="POST" action="/updateInfo" enctype="multipart/form-data">
+        <div class="post">
+            <div class="form">
+                <div class="wrapper">
+                    <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                        alt="image" id="photo">
+                    <input type="file" id="file" name="file">
+                    <label for="file" class="upload"><i class="fas fa-camera" style="font-size: 15px;"></i></label>
+                </div>
+                <div class="inputs">
+                    <%  if(error) {%><h3 style="color:red ; text-align: center;">Please enter all the details </h3> <%} %>
+                    <input type="text" class="input-1" placeholder="Name" name="name">
+                    <input type="text" class="input-1" placeholder="Bio" name="bio">
+                    <div class="input-2">
+                        <input type="text" class="input-1" placeholder="Age" name="age">
+                        <input type="text" class="input-1" name="mobileNo" placeholder="Mobile No">
+                    </div>
+                    <input type="text" class="input-1" name="profession" placeholder="Profession">
+                    <input type="text" class="input-1" placeholder="Interests" name="interest">
+                    <input type="text" class="input-1" placeholder="hobby" name="hobby">
+                    <button type="submit">Submit</button>
+                </div>
+            </div>
+        </div>
+    </form>
+    <script src="js/index.js"></script>
+    <script src="js/editProfile.js"></script>
+</body>
+
+</html>

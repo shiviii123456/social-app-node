@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<svg xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#" xmlns="http://www.w3.org/2000/svg" xmlns:cc="http://web.resource.org/cc/" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:svg="http://www.w3.org/2000/svg" id="svg2" viewBox="0 0 706.53 421.04" version="1.0">
+  <g id="layer1" transform="translate(-171.45 -180.38)">
+    <g id="g1917">
+      <g id="g3540" stroke="#0f170d" transform="matrix(1.3182 0 0 1.8758 -123.46 -446.82)" fill="#fff">
+        <path id="path3530" d="m716.59 507.52a220.75 50.89 0 1 1 0 -0.02"/>
+        <path id="path3528" d="m760.6 373.42a267.52 156.11 0 1 1 0 -0.07" transform="matrix(1 0 0 .62675 -1.3754 217.09)"/>
+      </g>
+      <path id="path3554" d="m620.31 173.3a145.79 108.66 0 1 1 0 -0.05" stroke="#ecd92c" fill="#b64b0a" transform="matrix(1.9282 0 0 1.4278 -372.79 149.81)"/>
+      <path id="path3552" d="m353.48 144.42a33.01 53.641 0 1 1 0 -0.03" stroke="#ecd92c" fill="#f3ef6a" transform="matrix(.94529 -1.3074 .91875 1.3451 -53.23 489.95)"/>
+      <path id="path3544" d="m353.48 144.42a33.01 53.641 0 1 1 0 -0.03" stroke="#ecd92c" fill="#f3ef6a" transform="matrix(.94529 -1.3074 .91875 1.3451 -102.18 520.91)"/>
+      <path id="path3546" d="m353.48 144.42a33.01 53.641 0 1 1 0 -0.03" stroke="#ecd92c" fill="#f3ef6a" transform="matrix(-.13491 -1.8659 1.3113 -.19197 143.79 1079.3)"/>
+      <path id="path3548" d="m353.48 144.42a33.01 53.641 0 1 1 0 -0.03" stroke="#ecd92c" fill="#f3ef6a" transform="matrix(-.0265 -1.8754 1.3179 -.037709 97.204 1003.3)"/>
+      <path id="path3550" d="m353.48 144.42a33.01 53.641 0 1 1 0 -0.03" stroke="#ecd92c" fill="#f3ef6a" transform="matrix(.51013 -1.7296 1.2155 .72590 -38.219 799.84)"/>
+      <path id="path3556" d="m614.81 193.24a55.016 36.448 0 1 1 0 -0.01" stroke="#ecd92c" fill="#793a14" transform="matrix(.66938 -1.6874 1.3833 .81654 56.714 1221.7)"/>
+      <path id="path1915" d="m614.81 193.24a55.016 36.448 0 1 1 0 -0.01" stroke="#ecd92c" fill="#793a14" transform="matrix(.66938 -1.6874 1.3833 .81654 129.61 1190.1)"/>
+    </g>
+  </g>
+  <metadata>
+    <rdf:RDF>
+      <cc:Work>
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
+        <cc:license rdf:resource="http://creativecommons.org/licenses/publicdomain/"/>
+        <dc:publisher>
+          <cc:Agent rdf:about="http://openclipart.org/">
+            <dc:title>Openclipart</dc:title>
+          </cc:Agent>
+        </dc:publisher>
+        <dc:title>tomato sauce1</dc:title>
+        <dc:date>2006-12-31T03:38:01</dc:date>
+        <dc:description>clip art, clipart, dinner, dinner, food, food, image, meat, meat, media, plate, plate, png, potato, potato, public domain, sauce, sauce, svg, </dc:description>
+        <dc:source>http://openclipart.org/detail/2601/tomato-sauce1-by-machovka</dc:source>
+        <dc:creator>
+          <cc:Agent>
+            <dc:title>Machovka</dc:title>
+          </cc:Agent>
+        </dc:creator>
+        <dc:subject>
+          <rdf:Bag>
+            <rdf:li>clip art</rdf:li>
+            <rdf:li>clipart</rdf:li>
+            <rdf:li>dinner</rdf:li>
+            <rdf:li>food</rdf:li>
+            <rdf:li>image</rdf:li>
+            <rdf:li>meat</rdf:li>
+            <rdf:li>media</rdf:li>
+            <rdf:li>plate</rdf:li>
+            <rdf:li>png</rdf:li>
+            <rdf:li>potato</rdf:li>
+            <rdf:li>public domain</rdf:li>
+            <rdf:li>sauce</rdf:li>
+            <rdf:li>svg</rdf:li>
+          </rdf:Bag>
+        </dc:subject>
+      </cc:Work>
+      <cc:License rdf:about="http://creativecommons.org/licenses/publicdomain/">
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Reproduction"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#Distribution"/>
+        <cc:permits rdf:resource="http://creativecommons.org/ns#DerivativeWorks"/>
+      </cc:License>
+    </rdf:RDF>
+  </metadata>
+</svg>

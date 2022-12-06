@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>GetSocial</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.css">
+    <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css"
+        integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
+    <link rel="stylesheet" href="css/home.css">
+</head>
+
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <nav class="navbar navbar-light bg-white">
+        <span style="font-size:1.5rem ; font-family: Arial, Helvetica, sans-serif;">GetSocial</span>
+        <form method="POST" action="/frndprof">
+            <input type=" text" id="button-addon2" placeholder="search" name="users" />
+        </form>
+        <div class="navigation">
+            <a href="/home"><i class='fas fa-home'></i></a>
+            <a href="/editProfile"><i class="fa fa-pencil-square-o"></i></a>
+            <a href="/about"> <i class='far fa-heart'></i></a>
+            <a href="/logout"> <i class="fa fa-sign-out" aria-hidden="true"></i></a>
+            <div id="user">
+                <% if(image !="" ){%>
+                    <img src="./Upload/<%= image %>" style="border: 1px solid #545454;">
+                    <%} else{%>
+                        <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                            style="border: 1px solid #545454;">
+                        <%} %>
+            </div>
+        </div>
+    </nav>
+    <div class="container-fluid gedf-wrapper">
+        <div class="row">
+            <div class="col-md-3 ">
+                <div class="card">
+                    <div class="card-body" id="top-card">
+                        <% if(image !="" ){%>
+                            <img src="./Upload/<%= image %>">
+                            <%} else{%>
+                                <img src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                    style="border: 1px solid #545454;">
+                                <%} %>
+                                    <div class="h7 text-muted" id="name">
+                                        <%= name %>
+                                    </div>
+                    </div>
+                    <ul class="list-group list-group-flush">
+                        <li class="list-group-item">
+                            <div class="h5">
+                                <%= bio %>
+                            </div>
+                        </li>
+                        <li class="list-group-item" id="friends">
+                            <div>
+                                <div class="h6 text-muted">Posts</div>
+                                <div class="h5"><% if(post.length>0){%> <%=post.length %> <%} else {%> <%= 0 %> <%} %></div>
+                            </div>
+                            <span>|</span>
+                            <div>
+                                <div class="h6 text-muted">Following</div>
+                                <div class="h5"><%= following.length %></div>
+                            </div>
+                        </li>
+                        <li class="list-group-item">
+                            <%= profession %>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="col-md-6 gedf-main cont-1">
+                <!--- \\\\\\\Post-->
+                <div class="card gedf-card">
+                    <div class="card-header">
+                        <ul class="nav nav-tabs card-header-tabs" id="myTab" role="tablist">
+                            <li class="nav-item">
+                                <a class="nav-link active" id="posts-tab" data-toggle="tab" href="#posts" role="tab"
+                                    aria-controls="posts" aria-selected="true">Make
+                                    a publication</a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" id="images-tab" data-toggle="tab" role="tab" aria-controls="images"
+                                    aria-selected="false" href="#images">Images</a>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card-body">
+                        <form method="post" action="/postImage" enctype="multipart/form-data">
+                            <div class="tab-content" id="myTabContent">
+                                <div class="tab-pane fade show active" id="posts" role="tabpanel"
+                                    aria-labelledby="posts-tab">
+                                    <div class="form-group">
+                                        <label class="sr-only" for="message">post</label>
+                                        <textarea class="form-control" id="message" rows="3"
+                                            placeholder="What are you thinking?" name="post"
+                                            spellcheck="false"></textarea>
+                                    </div>
+                                </div>
+                                <div class="tab-pane fade" id="images" role="tabpanel" aria-labelledby="images-tab">
+                                    <div class="form-group">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" id="customFile" name="postImg">
+                                            <label class="custom-file-label" for="customFile">Upload image</label>
+                                        </div>
+                                    </div>
+                                    <div class="py-4"></div>
+                                </div>
+                            </div>
+                            <div class="btn-toolbar justify-content-between">
+                                <div class="btn-group">
+                                    <button type="submit" class="btn btn-primary">share</button>
+                                </div>
+                        </form>
+                        <div class="btn-group">
+                            <button id="btnGroupDrop1" type="button" class="btn btn-link dropdown-toggle"
+                                data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                <i class="fa fa-globe"></i>
+                            </button>
+                            <div class="dropdown-menu dropdown-menu-right" aria-labelledby="btnGroupDrop1">
+                                <a class="dropdown-item" href="#"><i class="fa fa-globe"></i> Public</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-users"></i> Friends</a>
+                                <a class="dropdown-item" href="#"><i class="fa fa-user"></i> Just me</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!--- \\\\\\\Post-->
+            <% if(post){%>
+                <% for(let i=0;i< post.length;i++){%>
+                    <div class="card gedf-card">
+                        <div class="card-header">
+                            <div class="d-flex justify-content-between align-items-center">
+                                <div class="d-flex justify-content-between align-items-center">
+                                    <div class="mr-2">
+                                        <% if (image !="" ) { %>
+                                            <img class="rounded-circle" width="45" height="45"
+                                                src="./Upload/<%= post[i].postedBy.image %>" alt="">
+                                            <%} else { %>
+                                                <img class="rounded-circle" width="45" style="border:1px solid #0d6efd"
+                                                    src="https://t4.ftcdn.net/jpg/03/46/93/61/360_F_346936114_RaxE6OQogebgAWTalE1myseY1Hbb5qPM.jpg"
+                                                    alt="">
+                                                <% } %>
+                                    </div>
+                                    <div class="ml-2">
+                                        <div class="h5 m-0">
+                                            <%= post[i].postedBy.username %>
+                                        </div>
+                                        <div class="h7 text-muted">
+                                            <%= post[i].postedBy.name %>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div>
+                                    <div class="dropdown">
+                                        <button class="btn btn-link dropdown-toggle" type="button" id="gedf-drop1"
+                                            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <i class="fa fa-ellipsis-h"></i>
+                                        </button>
+                                        <div class="dropdown-menu dropdown-menu-right" aria-labelledby="gedf-drop1">
+                                            <%
+                                                if(JSON.stringify(username)==JSON.stringify(post[i].postedBy.username)){%>
+                                                <a class="dropdown-item"
+                                                    href="/deletePost/<%= post[i]._id %>">Delete</a>
+                                                <%} %>
+                                                    <a class="dropdown-item" href="#">Report</a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <div class="text-muted h7 mb-2"> <i class="fa fa-clock-o"></i> 10 min ago</div>
+                            <p class="card-text">
+                                <%= post[i].caption %>
+                            </p>
+                            <img class="rounded rounded mx-auto d-block" src="./Upload/<%= post[i].img %>" alt="">
+                        </div>
+                        <div class="card-footer">
+
+                            <% for(j=0; j< post[i].like.length ;j++){%>
+
+                                <%} %>
+                                    <span class="like">
+                                        <%= j %>
+                                    </span>
+                                    <a class="card-link"><i class="fa fa-thumbs-up"
+                                            onclick="getLikes('<%= post[i]._id %>')"></i>
+                                        Like</a>
+                                    <a class="card-link"><i class="fa fa-thumbs-down"
+                                            onclick="getUnLikes('<%= post[i]._id %>')"></i>
+                                        Unlike</a>
+                                    <a class="card-link"><i class="fa fa-comment" onclick="showBox('<%= i %>')"></i>
+                                        Comment</a>
+                        </div>
+                    </div>
+                    <div class="wrap" id="<%= post[i]._id %>">
+                        <div class="detailBox">
+                            <div class="titleBox">
+                                <label>Comment</label>
+                                <button class="close" onclick="removeBox()">&times;</button>
+                            </div>
+                            <div class="commentBox">
+                                <p class="taskDescription">Comment here
+                                </p>
+                            </div>
+                            <div class="actionBox">
+                                <ul class="commentList">
+                                </ul>
+                                <form class="form-inline" role="form">
+                                    <input type="hidden" id="postId">
+                                    <div class="form-group">
+                                        <input class="form-control" type="text" placeholder="Your comments" id="text">
+                                    </div>
+                                    <div class=" form-group">
+                                        <button class="btn btn-primary" type="submit" onclick="comment()">Add</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                    <%} %>
+                        <%} %>
+                            <!-- Post /////-->
+        </div>
+        <div class="col-md-3">
+            <div class="card gedf-card">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+            <div class="card gedf-card">
+                <div class="card-body">
+                    <h5 class="card-title">Card title</h5>
+                    <h6 class="card-subtitle mb-2 text-muted">Card subtitle</h6>
+                    <p class="card-text">Some quick example text to build on the card title and make up the bulk of
+                        the
+                        card's content.</p>
+                    <a href="#" class="card-link">Card link</a>
+                    <a href="#" class="card-link">Another link</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/index.js"></script>
+</body>
+
+</html>
